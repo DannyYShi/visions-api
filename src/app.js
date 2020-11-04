@@ -13,8 +13,10 @@ app.use(morgan(morganOption));
 app.use(helmet());
 
 app.get("/", (req, res) => {
-  res.send("Hello, world!");
+  res.send("You have reached the Visions API");
 });
+
+app.use('/api/shop', shopRouter)
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
