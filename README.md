@@ -1,27 +1,76 @@
-# Express Boilerplate!
+# Visions (server)
 
-This is a boilerplate project used for starting new projects!
+This is the backend code for Visions, a website template for an online professional photography store or portfolio. 
 
-## Set up
+**Link to Live App:** https://visions-iota.vercel.app/
+**Link to Client Repo:** https://github.com/danny-shi/visions
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+## API Documentation
+### Lists Endpoints 
+### ▸ `GET /api/shop`
+Returns an array of objects of each item in the database representing the items available to be purchased. 
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+**Example**
+```JSON
+[
+    {
+        "item_id": 1,
+        "item_name": "Mountain",
+        "img_file": "mountain.jpg",
+        "item_price": 35,
+        "item_description": "A picture of a mountain."
+    },
+    {
+        "item_id": 2,
+        "item_name": "Ocean",
+        "img_file": "ocean.jpg",
+        "item_price": 35,
+        "item_description": "The seaside view outside of our AirBnb."
+    },
+    {
+        "item_id": 3,
+        "item_name": "Woman",
+        "img_file": "woman.jpg",
+        "item_price": 35,
+        "item_description": "Portrait of a woman passing by on the street."
+    },
+    {
+        "item_id": 4,
+        "item_name": "Waterfall",
+        "img_file": "waterfall.jpg",
+        "item_price": 35,
+        "item_description": "Hidden waterfall we discovered on a hike."
+    },
+    {
+        "item_id": 5,
+        "item_name": "Stones",
+        "img_file": "stones.jpg",
+        "item_price": 35,
+        "item_description": "A stone tower by a river."
+    }
+]
+```
 
-## Scripts
+### Cards Endpoints
+### ▸ `GET /api/shop/:item_id`
+Returns an object of a particular item in the database by the `item_id` assigned to it. 
 
-Start the application `npm start`
+**Example**
+```JSON
+{
+    "item_id": 3,
+    "item_name": "Woman",
+    "img_file": "woman.jpg",
+    "item_price": 35,
+    "item_description": "Portrait of a woman passing by on the street."
+}
+```
 
-Start nodemon for the application `npm run dev`
+## Technology Stack
 
-Run the tests `npm test`
-
-## Deploying
-
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
-# visions-api
+* **Express** for handling API requests
+* **Node** for interacting with the file system
+* **PostgreSQL** for the database 
+* **Knex.js** for interfacing with the **PostgreSQL** database
+* **Postgrator** for database migration
+* **Heroku** for deploying the database
