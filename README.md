@@ -6,7 +6,7 @@ This is the backend code for Visions, a website template for an online professio
 **Link to Client Repo:** https://github.com/danny-shi/visions
 
 ## API Documentation
-### Lists Endpoints 
+### Shop Endpoints 
 ### ▸ `GET /api/shop`
 Returns an array of objects of each item in the database representing the items available to be purchased. 
 
@@ -51,7 +51,7 @@ Returns an array of objects of each item in the database representing the items 
 ]
 ```
 
-### Cards Endpoints
+### Item Endpoints
 ### ▸ `GET /api/shop/:item_id`
 Returns an object of a particular item in the database by the `item_id` assigned to it. 
 
@@ -64,6 +64,23 @@ Returns an object of a particular item in the database by the `item_id` assigned
     "item_price": 35,
     "item_description": "Portrait of a woman passing by on the street."
 }
+```
+### Order Endpoints
+### ▸ `GET /api/orders/
+Gets a list of orders that have been placed through the website with various details. 
+
+**Example**
+```JSON
+[
+    {
+        "order_id": 1,
+        "customer_name": "Andrew Siegand",
+        "customer_email": "test@test.com",
+        "comments": null,
+        "total_price": 35,
+        "order_summary": "Item: Mountain, Price: $35, Quantity: 1, Total cost: $35"
+    }
+]
 ```
 
 ## Technology Stack
