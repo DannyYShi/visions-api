@@ -4,6 +4,7 @@ const supertest = require('supertest')
 const knex = require('knex')
 const { DATABASE_URL } = require("../src/config");
 const ShopService = require('../src/shop/shop-service')
+const OrderService = require('../src/order/order-service')
 
 before(() => {
   db = knex({
@@ -29,7 +30,7 @@ describe('Shop', () => {
 })
 
 
-describe("Routers", () => {
+describe("Shop Router", () => {
   describe(`getAllItems()`, () => {
     it('GET /api/shop responds with all the items', () => {
       return ShopService.getAllItems(db).then((items) => {
@@ -41,6 +42,36 @@ describe("Routers", () => {
     it('GET /api/shop/:item_id responds with an item object', () => {
       return ShopService.getById(db, 1).then((item) => {
         expect(item).to.be.a("object")
+      })
+    })
+  })
+})
+
+
+describe('Order', () => {
+  it('GET /api/orders responds with all of the orders', () => {
+    return supertest(app).get('/api/orders').expect(200).expect('Content-Type', /json/)
+  })
+})
+
+describe("Order Router", () => {
+  describe("getAllOrders()", () => {
+    it('GET /api/orders responds with all the customer orders', () => {
+      return OrderService.getAllOrders(db).then((orders) => {
+        expect(orders).to.be.a("array")
+      })
+    })
+  })
+  describe("insertOrder()", () => {
+    it('POST / responds with 201 and creates a new order', () => {
+      const newOrder = {
+        "customer_name": "Bob Smith",
+        "customer_email": "exmaple@gmail.com",
+        "total_price": 5000,
+        "order_summary": "a bunch of stuff"
+      }
+      return OrderService.insertOrder(db, newOrder).then((order) => {
+        expect(order).to.be.a("object")
       })
     })
   })
