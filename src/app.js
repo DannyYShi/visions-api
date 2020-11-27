@@ -5,6 +5,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const { NODE_ENV } = require("./config");
 const ShopRouter = require('./shop/shop-router')
+const OrderRouter = require('./order/order-router')
 
 const app = express();
 
@@ -18,7 +19,8 @@ app.get("/", (req, res) => {
   res.send("You have reached the Visions API");
 });
 
-app.use('/api/shop', ShopRouter)
+app.use("/api/shop", ShopRouter);
+app.use("/api/orders", OrderRouter);
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
